@@ -56,6 +56,8 @@ class LinkedList {
   }
  }
 
+}
+
  // ******Deletion By key
 
  public static LinkedList deleteByKey(LinkedList list, int key) {
@@ -100,6 +102,50 @@ class LinkedList {
   }
   return list;
  }
+
+ public static LinkedList deleteByKey(LinkedList list, int key) {
+  // Store head Node in the currNode
+  Node currNode = list.head, prev = null;
+  // Case 1:IF the key to be deleted is in the head node
+  if (currNode != null && currNode.data == key) {
+   list.head = currNode.next;// changed node
+
+   // Display the message
+   System.out.println(key + "found and deleted: ");
+
+   // Return the updated List
+   return list;
+
+  }
+
+  // Case 2:If the key to be deleted is somewhere in the middle
+  // Search the key to be deleted
+  // keep track of the previous node
+  // as it is needed to change currNode.next
+  while (currNode != null && currNode.data != key) {
+   prev = currNode;
+   currNode = currNode.next;
+  }
+  // iF the key was present,it should be at the currNode
+  // Therefore the currnode should not be null
+  if (currNode != null) {
+   // since the key is at the currNode
+   // unlink currnode from the linked list
+   prev.next = currNode.next;
+   System.out.println(key + "found and deleted");
+  }
+  // Case 3: If the key is not present in the list
+  // currNode should be null
+  if (currNode == null) {
+
+   // Display the message key not found
+
+   System.out.println(key + " not found");
+
+  }
+  return list;
+
+  //Method to delete node in a doubly linked list
 
  public static void main(String[] args) {
   Scanner in = new Scanner(System.in);
